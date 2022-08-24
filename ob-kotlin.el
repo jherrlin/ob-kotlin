@@ -39,7 +39,7 @@ path name, like /opt/homebrew/bin/kotlinc."
 
 (defconst org-babel-kotlin--package-re (rx line-start (0+ space) "package"
 					 (1+ space) (group (1+ (in alnum ?_ ?.))) ; capture the package name
-					 (0+ space) ?\; line-end)
+					 (0+ space) (opt ?\;) line-end)
   "Regexp for the package statement.")
 
 (defconst org-babel-kotlin--imports-re (rx line-start (0+ space) "import"
