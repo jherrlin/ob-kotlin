@@ -35,10 +35,20 @@ path name, like /usr/local/bin/kotlinc."
   (let* (;; header args for result processing
          (result-type (cdr (assq :result-type params)))
          (result-params (cdr (assq :result-params params)))
+         (classpath (cdr (assq :classpath params)))
          (filename "main.kt")
          (full-body body)
-         (compile-command "kotlinc main.kt -classpath kotlinx-coroutines-core-jvm-1.6.4.jar -include-runtime -d main.jar")
-         (run-command "java -cp kotlinx-coroutines-core-jvm-1.6.4.jar:main.jar MainKt")
+         (compile-command
+          (concat ob-kotlin:kotlinc " " filename " "
+                  (when classpath
+                    (concat "-classpath " classpath " "))
+                  "-include-runtime -d main.jar"))
+         (run-command
+          (concat org-babel-kotlin-command
+                  " -classpath main.jar"
+                  (when classpath
+                    (concat ":" classpath " "))
+                  "MainKt"))
          (cmd (concat
                compile-command
                " && "
