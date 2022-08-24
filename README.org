@@ -28,7 +28,7 @@
    If you write oneliners =fun main()= is not needed. =ob-kotlin= adds that
    before evaluating the code.
 
-   #+BEGIN_SRC org :results output code
+   #+BEGIN_SRC org
      ,#+BEGIN_SRC kotlin :results output code
        println("Hello World!")
      ,#+END_SRC
@@ -47,6 +47,19 @@
        fun main() {
            println("Hello World!")
        }
+     ,#+end_src
+   #+END_SRC
+
+   #+BEGIN_SRC org
+     ,#+BEGIN_SRC kotlin :results output code
+       println(
+           listOf<String>().all({ it == "something" })
+       )
+     ,#+END_SRC
+
+     ,#+RESULTS:
+     ,#+begin_src kotlin
+       true
      ,#+end_src
    #+END_SRC
 
