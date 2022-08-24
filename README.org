@@ -23,49 +23,55 @@
   #+END_SRC
 
 * Examples
+** Oneliners
 
-  #+BEGIN_SRC org :results output code
-    ,#+BEGIN_SRC kotlin :results output code
-      println("Hello World!")
-    ,#+END_SRC
+   If you write oneliners =fun main()= is not needed. =ob-kotlin= adds that
+   before evaluating the code.
 
-    ,#+RESULTS:
-    ,#+begin_src kotlin
-      Hello World!
-    ,#+end_src
+   #+BEGIN_SRC org :results output code
+     ,#+BEGIN_SRC kotlin :results output code
+       println("Hello World!")
+     ,#+END_SRC
 
-    ,#+BEGIN_SRC shell :results output code
-      cat main.kt
-    ,#+END_SRC
+     ,#+RESULTS:
+     ,#+begin_src kotlin
+       Hello World!
+     ,#+end_src
 
-    ,#+RESULTS:
-    ,#+begin_src shell
-      fun main() {
-          println("Hello World!")
-      }
-    ,#+end_src
-  #+END_SRC
+     ,#+BEGIN_SRC shell :results output code
+       cat main.kt
+     ,#+END_SRC
 
-  =kotlinx-coroutines-core-jvm-1.6.4.jar= needs to be in the same folder or
-  =:classpath= needs to point at it.
+     ,#+RESULTS:
+     ,#+begin_src shell
+       fun main() {
+           println("Hello World!")
+       }
+     ,#+end_src
+   #+END_SRC
 
-  #+BEGIN_SRC org
-    ,#+HEADER: :classpath kotlinx-coroutines-core-jvm-1.6.4.jar
-    ,#+BEGIN_SRC kotlin :results output code
-      import kotlinx.coroutines.*
+** Add external package
 
-      fun main() = runBlocking{
-          launch {
-              delay(1000L)
-              println("World!")
-          }
-          println("Hello")
-      }
-    ,#+END_SRC
+   =kotlinx-coroutines-core-jvm-1.6.4.jar= needs to be in the same folder or
+   =:classpath= needs to point at it.
 
-    ,#+RESULTS:
-    ,#+begin_src kotlin
-      Hello
-      World!
-    ,#+end_src
-  #+END_SRC
+   #+BEGIN_SRC org
+     ,#+HEADER: :classpath kotlinx-coroutines-core-jvm-1.6.4.jar
+     ,#+BEGIN_SRC kotlin :results output code
+       import kotlinx.coroutines.*
+
+       fun main() = runBlocking{
+           launch {
+               delay(1000L)
+               println("World!")
+           }
+           println("Hello")
+       }
+     ,#+END_SRC
+
+     ,#+RESULTS:
+     ,#+begin_src kotlin
+       Hello
+       World!
+     ,#+end_src
+   #+END_SRC
